@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[HomeController::class,'home']);
+Route::get('/',[HomeController::class,'home'])->name('home');
+
+Route::get('/create/post',[PostController::class,'create'])->name('post.create');
+
+Route::get('/create/category',[CategoryController::class,'create'])->name('category.create');
+
+Route::post('/create/category',[CategoryController::class,'store'])->name('category.store');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

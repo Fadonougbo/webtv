@@ -3,7 +3,7 @@
 @section('title','webtv')
 
 @section('content')
-  <div class="p-2 mt-28   lg:flex" >
+  <div class="p-2 mt-28 bg-green-500  lg:flex" >
     <section class="w-full bg-gray-500 h-96 lg:w-[45%] lg:h-full" >
 
     </section>
