@@ -21,9 +21,23 @@ Route::get('/',[HomeController::class,'home'])->name('home');
 
 Route::get('/create/post',[PostController::class,'create'])->name('post.create');
 
+Route::post('/create/post',[PostController::class,'store'])->name('post.store');
+
+
+
+
 Route::get('/create/category',[CategoryController::class,'create'])->name('category.create');
 
 Route::post('/create/category',[CategoryController::class,'store'])->name('category.store');
+
+Route::get('/update/category/{category}',[CategoryController::class,'create'])->name('category.update');
+
+Route::patch('/update/category/{category}',[CategoryController::class,'update'])->name('category.update.action');
+
+Route::delete('/delete/category/{category}',[CategoryController::class,'delete'])->name('category.delete.action');
+
+
+
 
 
 Route::get('/dashboard', function () {

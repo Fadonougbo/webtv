@@ -20,7 +20,13 @@
         <tr>
             <td>{{$category->id}}</td>
             <td>{{$category->name}}</td>
-            <td><button>update</button> <button>delete</button> </td>
+            <td class="space-y-3" >
+
+              <a href="{{route('category.update',['category'=>$category->id])}}" class="btn btn-success btn-sm capitalize w-full text-white">modifier</a> 
+
+             @include('webtv.category.delete_button')
+              
+            </td>
         </tr>
        @empty
            <tr>
