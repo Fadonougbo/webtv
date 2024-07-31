@@ -1,13 +1,13 @@
-<button class="btn btn-error btn-sm capitalize w-full text-white lg:w-[30%]" onclick="category_modal_{{$category->id}}.showModal()">
-                supprimer
+<button class="btn btn-error btn-sm capitalize w-full text-white lg:w-[40%]" onclick="post_modal_{{$post->id}}.showModal()">
+    supprimer
 </button>
-<dialog id="category_modal_{{$category->id}}" class="modal modal-bottom sm:modal-middle">
+<dialog id="post_modal_{{$post->id}}" class="modal modal-bottom sm:modal-middle">
 <div class="modal-box">
     <h3 class="text-lg font-bold text-red-600">Attention</h3>
-    <p class="py-4">Voulez-vous supprimer cette rubrique ?</p>
+    <p class="py-4">Voulez-vous supprimer cet post ?</p>
     <div class="modal-action w-full flex justify-between">
     
-    <form action="{{route('category.delete.action',['category'=>$category->id])}}" method="POST" class="w-[40%]">
+    <form action="{{route('post.delete.action',['post'=>$post->id])}}" method="POST" class="w-[40%]">
         @csrf
         @method('delete')
         <button class="btn btn-success btn-sm capitalize w-full  text-white mb-4">Oui</button>

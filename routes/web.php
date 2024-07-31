@@ -19,10 +19,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[HomeController::class,'home'])->name('home');
 
+Route::get('/show/poste/{post}/{slug}',[HomeController::class,'show'])->name('home.show');
+
+
 Route::get('/create/post',[PostController::class,'create'])->name('post.create');
 
 Route::post('/create/post',[PostController::class,'store'])->name('post.store');
 
+Route::get('/update/post/{post}',[PostController::class,'create'])->name('post.update');
+
+Route::patch('/update/post/{post}',[PostController::class,'update'])->name('post.update.action');
+
+Route::delete('/delete/post/{post}',[PostController::class,'delete'])->name('post.delete.action');
 
 
 

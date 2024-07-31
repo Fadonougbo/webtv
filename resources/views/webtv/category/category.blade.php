@@ -10,9 +10,9 @@
         </h2>
     </x-slot>
 
-    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg" >
+    <div class="w-full sm:flex justify-center  mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg" >
 
-        <form method="POST" action="{{$category->id?route('category.update.action',['category'=>$category->id]):route('category.store') }}">
+        <form method="POST" action="{{$category->id?route('category.update.action',['category'=>$category->id]):route('category.store') }}" class="w-ful sm:w-[80%] lg:w-[70%] xl:w-1/2" >
 
             @csrf
 

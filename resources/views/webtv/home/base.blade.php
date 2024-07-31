@@ -6,8 +6,8 @@
     <title>@yield('title')</title>
     @vite(['./resources/css/app.css','./resources/js/app.js'])
 </head>
-<body>
-    <main class="drawer ">
+<body class="flex flex-col min-h-screen" >
+    <main class="drawer grow">
         <input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
         <div class="drawer-content flex flex-col">
             <!-- Navbar -->
@@ -28,12 +28,12 @@
                         </svg>
                         </label>
                     </div>
-                    <div class="mx-2 flex-1 px-2 ">Navbar Title</div>
+                    <div class="mx-2 flex-1 px-2 ">DahomeyTV</div>
                     <div class="hidden flex-none lg:block ">
                         <ul class="menu menu-horizontal capitalize">
                         <!-- Navbar menu content here -->
                             <li >
-                                <a  href="{{route('home')}}"  class="active" >home</a>
+                                <a  href="{{route('home')}}"  class="active" >Acceuil</a>
                             </li>
                         </ul>
                     </div>
@@ -56,12 +56,14 @@
                 <ul class="uppercase">
                 <!-- Sidebar content here -->
                     <li class="w-full" >
-                        <a  href="{{route('home')}}" class="active">home</a>
+                        <a  href="{{route('home')}}" class="active text-lg font-semibold">Acceuil</a>
                     </li>
                 </ul>
             </section>
 
         </div>
     </main>
+
+    @include('webtv.shared.footer')
 </body>
 </html>

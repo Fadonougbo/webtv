@@ -1,10 +1,15 @@
 @use(App\Models\Category)
+@php
+    $categories=(new Category())->orderByDesc('id')->paginate('10',pageName:"cp");
+@endphp
 
-<div class="overflow-x-auto">
+{{$categories->render()}}
+
+<div class="overflow-x-auto my-3">
   <table class="table table-zebra-zebra table-lg">
     <!-- head -->
     <thead>
-      <tr class="text-sm" >
+      <tr class=" text-sm lg:text-xl uppercase text-slate-700" >
         <th class="text-center">ID</th>
         <th class="text-center">Name</th>
         <th class="text-center">Actions</th>
@@ -12,17 +17,15 @@
     </thead>
     <tbody>
       <!-- row 1 -->
-       @php
-           $categories=(new Category())->orderByDesc('id')->get();
-       @endphp
+       
 
        @forelse ($categories as $category)
         <tr>
             <td>{{$category->id}}</td>
             <td>{{$category->name}}</td>
-            <td class="space-y-3" >
+            <td class="max-lg:space-y-3 lg:flex justify-center" >
 
-              <a href="{{route('category.update',['category'=>$category->id])}}" class="btn btn-success btn-sm capitalize w-full text-white">modifier</a> 
+              <a href="{{route('category.update',['category'=>$category->id])}}" class="btn btn-success btn-sm capitalize w-full text-white lg:w-[30%] lg:mr-3">modifier</a> 
 
              @include('webtv.category.delete_button')
               
@@ -38,3 +41,5 @@
     </tbody>
   </table>
 </div> 
+
+{{$categories->render()}}
