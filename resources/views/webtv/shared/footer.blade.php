@@ -1,10 +1,8 @@
 <footer class="footer footer-center bg-gray-600   text-gray-300 rounded p-10">
-  <!-- <nav class="grid grid-flow-col gap-4">
-    <a class="link link-hover">About us</a>
-    <a class="link link-hover">Contact</a>
-    <a class="link link-hover">Jobs</a>
-    <a class="link link-hover">Press kit</a>
-  </nav> -->
+   <nav class="grid grid-flow-col gap-4 text-sm">
+    <a class="link link-hover" href="mailto:fadougbogautier@gmail.com">fadougbogautier@gmail.com</a>
+    <a class="link link-hover" href="tel:22991810043">(+229) 91810043</a>
+  </nav>
   <nav>
     <div class="grid grid-flow-col gap-4">
       <!-- <a>

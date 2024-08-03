@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class CreateCategoryRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class CreateCategoryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Gate::allows('show_admin_interface');
     }
 
     /**

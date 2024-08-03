@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Models\Category;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
 class UpdateCategoryFormRequest extends FormRequest
@@ -13,7 +14,7 @@ class UpdateCategoryFormRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Gate::allows('show_admin_interface');
     }
 
     /**

@@ -17,34 +17,49 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[HomeController::class,'home'])->name('home');
+Route::controller(HomeController::class)->group(function() {
 
-Route::get('/show/poste/{post}/{slug}',[HomeController::class,'show'])->name('home.show');
+    Route::get('/','home')->name('home');
 
+    Route::get('/show/poste/{post}/{slug}','show')->name('home.show');
+    
+    Route::get('/show/plus','showPlus')->name('home.show.plus');
+    
+    Route::get('/show/rubrique/{category}/{name}','showCategory')->name('home.show.category');
 
-Route::get('/create/post',[PostController::class,'create'])->name('post.create');
-
-Route::post('/create/post',[PostController::class,'store'])->name('post.store');
-
-Route::get('/update/post/{post}',[PostController::class,'create'])->name('post.update');
-
-Route::patch('/update/post/{post}',[PostController::class,'update'])->name('post.update.action');
-
-Route::delete('/delete/post/{post}',[PostController::class,'delete'])->name('post.delete.action');
+});
 
 
 
-Route::get('/create/category',[CategoryController::class,'create'])->name('category.create');
+Route::controller(PostController::class)->name('post.')->group(function() {
 
-Route::post('/create/category',[CategoryController::class,'store'])->name('category.store');
+    Route::get('/create/post','create')->name('create')->can('show_admin_interface');
 
-Route::get('/update/category/{category}',[CategoryController::class,'create'])->name('category.update');
+    Route::post('/create/post','store')->name('store')->can('show_admin_interface');
 
-Route::patch('/update/category/{category}',[CategoryController::class,'update'])->name('category.update.action');
+    Route::get('/update/post/{post}','create')->name('update')->can('show_admin_interface');
 
-Route::delete('/delete/category/{category}',[CategoryController::class,'delete'])->name('category.delete.action');
+    Route::patch('/update/post/{post}','update')->name('update.action')->can('show_admin_interface');
+
+    Route::delete('/delete/post/{post}','delete')->name('delete.action')->can('show_admin_interface');
+
+});
 
 
+
+Route::controller(CategoryController::class)->name('category.')->group(function() {
+
+    Route::get('/create/category','create')->name('create')->can('show_admin_interface');
+
+    Route::post('/create/category','store')->name('store')->can('show_admin_interface');
+
+    Route::get('/update/category/{category}','create')->name('update')->can('show_admin_interface');
+
+    Route::patch('/update/category/{category}','update')->name('update.action')->can('show_admin_interface');
+
+    Route::delete('/delete/category/{category}','delete')->name('delete.action')->can('show_admin_interface');
+
+});
 
 
 
