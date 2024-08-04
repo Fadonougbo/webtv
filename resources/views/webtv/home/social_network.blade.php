@@ -8,6 +8,8 @@
         $urlEncoded=urlencode($route);
 
         $encodeTitle=urlencode($post->title);
+
+        
        
     @endphp
     <p class="uppercase font-semibold " >Partager sur :</p>
@@ -32,6 +34,14 @@
               class="fill-current">
               <path
                 d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
+            </svg>
+          </a>
+
+          <a href="mailto:?subject={{$encodeTitle}}&body={{$urlEncoded}}" class="opacity-85 hover:opacity-75">
+            
+            <svg width="55" height="55" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" >
+            <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="3" y="5" width="18" height="14" rx="2" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
             </svg>
           </a>
     </div>

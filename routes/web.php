@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -62,15 +63,31 @@ Route::controller(CategoryController::class)->name('category.')->group(function(
 });
 
 
+Route::controller(MessageController::class)->name('message.')->group(function() {
+
+    Route::get('/create/message','create')->name('create')->can('show_admin_interface');
+
+    Route::post('/create/message','store')->name('store')->can('show_admin_interface');
+
+    Route::get('/update/message/{message}','create')->name('update')->can('show_admin_interface');
+
+    Route::patch('/update/message/{message}','update')->name('update.action')->can('show_admin_interface');
+
+    Route::delete('/delete/message/{message}','delete')->name('delete.action')->can('show_admin_interface'); 
+
+});
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+//J'ai volontairement bloqué certaine route par defaut
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [ProfileController::class, 'edit'])->can('use_route')->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->can('use_route')->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->can('use_route')->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';

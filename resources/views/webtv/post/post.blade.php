@@ -69,7 +69,7 @@
             <div class="my-4" >
                 @if ($post->image)
                     <section  class="w-full h-28 my-4">
-                        <img src="{{asset('storage/'.$post->image)}}" class="w-full h-full object-cover" alt="">
+                        <img src="{{asset('storage/'.$post->image)}}" class="w-full h-full object-contain" alt="">
                     </section> 
                 @endif
                 <x-input-label class=" text-[1rem] my-1 sm:text-lg" for="image" :value="__('Selectionner une image')" />

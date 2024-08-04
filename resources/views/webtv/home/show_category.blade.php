@@ -5,7 +5,7 @@
 @section('content')
 
     
-<div class="p-2 w-full mt-32 lg:mt-28" >
+<div class="p-2 w-full mt-32" >
 
     <div class="text-lg">
         <ul class="flex items-center font-bold" >

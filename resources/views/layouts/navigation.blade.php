@@ -5,8 +5,12 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <!-- <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                    </a> -->
+                    <a href="{{route('home')}}" >
+                        <img src="{{asset('logo.jpg')}}" class="size-8 sm:size-10  object-cover mx-1 rounded-full inline-block" alt="logo de danhome info">
+                        <span class="font-bold uppercase" >Danxome infos </span>
                     </a>
                 </div>
 

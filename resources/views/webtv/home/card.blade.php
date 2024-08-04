@@ -1,16 +1,21 @@
 @foreach ($posts as $post)
     @php
         $categories=$post->categories->pluck('name','id')->toArray();
-        $date=now('africa/porto-novo')->setDateTimeFrom(new DateTime($post->created_at))->diffForHumans();
+        $date=now('africa/porto-novo')->setDateTimeFrom(new DateTime($post->created_at))->translatedFormat('d M Y');
     @endphp
 
     <div class=" my-5 shadow-black/10 shadow-lg rounded-lg p-2 bg-gray-50" >
         <a href="{{route('home.show',['post'=>$post->id,'slug'=>$post->getSlug()])}}" class="text-lg block   w-full   my-2  sm:mx-2 lg:my-0 min-h-[16rem] sm:w-auto lg:h-56  hover:opacity-85 hover:text-blue-800 " title="{{$post->title}}">
 
-        <img src="{{asset('storage/'.$post->image)}}" class="w-full h-44  object-cover " alt="">
+            
+            @if ($post->image)
+                <img src="{{asset('storage/'.$post->image)}}" class="w-full h-44  object-contain" alt="">
+            @else
+                <img src="{{asset('logo.jpg')}}" class="w-full h-44 object-contain" alt="logo de danhome info ">
+            @endif
             <strong class="block text-sm font-semibold my-2" ><em>{{$date}}</em></strong>
 
-        <p>{{Str::limit($post->title,60)}}</p> 
+            <p>{{Str::limit($post->title,60)}}</p> 
 
         </a>
 

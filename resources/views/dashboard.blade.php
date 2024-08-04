@@ -12,6 +12,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 lg:flex justify-center">
+                    <a href="{{route('message.create')}}" class="inline-block w-full text-lg text-center bg-slate-800 p-3 text-white rounded-lg font-semibold hover:opacity-85 lg:w-1/2 " >Ajouter un globale message</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   @include('webtv.message.message_table')
+
+    <div class="py-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900 lg:flex justify-center">
                     <a href="{{route('post.create')}}" class="inline-block w-full text-lg text-center bg-slate-800 p-3 text-white rounded-lg font-semibold hover:opacity-85 lg:w-1/2 " >Ajouter un poste</a>
                 </div>
             </div>

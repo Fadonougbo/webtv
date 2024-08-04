@@ -11,26 +11,45 @@ class HomeController extends Controller
     public function home() {
 
         $ids=[];
+
+        $posts=Post::with('categories');
        
-        $lastPosts=Post::with('categories')->isOnline()->orderByDesc('id')->limit(4)->get();
+        $lastPosts=$posts->isOnline()->orderByDesc('id')->limit(4)->get();
 
         //Get last post ids
         $lastPostsId=$lastPosts->pluck('id')->toArray();
 
-        $bigPosts=Post::with('categories')->whereNotIn('id',$lastPostsId)->isOnline()->limit(2)->get();
+        $bigPosts=$posts->whereNotIn('id',$lastPostsId)->isOnline()->limit(2)->get();
 
         $bigPostsId=$bigPosts->pluck('id')->toArray();
 
         $ids=array_merge($lastPostsId,$bigPostsId);
 
-        $oldPosts=Post::with('categories')->whereNotIn('id',$ids)->isOnline()->limit(12)->get();
-
-       
-
-        $allCategories=Category::with('posts')->limit(12)->get();
+        $oldPosts=$posts->whereNotIn('id',$ids)->isOnline()->limit(12)->get();
 
         
-        return view('webtv.home.home',['bigPosts'=>$bigPosts,'lastPosts'=>$lastPosts,'oldPosts'=>$oldPosts,'allCategories'=>$allCategories]);
+        $allCategories=Category::with('posts')->limit(12)->get();
+
+        //Tranformation en json des postes du carousel
+        $carouselData=$bigPosts->merge($lastPosts)->map(function(Post $post) {
+
+            $date=now('africa/porto-novo')->setDateTimeFrom(new \DateTime($post->created_at))->translatedFormat('d M Y');
+
+           return [
+              'image'=>!empty($post->image)?asset('storage/'.$post->image):asset('logo.jpg'),
+              'title'=>str()->limit($post->title,45) ,
+              'date'=>$date,
+              'url'=>route('home.show',['post'=>$post->id,'slug'=>str($post->title)->slug()]),
+              'id'=>$post->id,
+              'categories'=>$post->categories()->pluck('name')->toArray()
+           ];
+
+       });
+
+        $carouselData=json_encode($carouselData);
+
+        
+        return view('webtv.home.home',['bigPosts'=>$bigPosts,'lastPosts'=>$lastPosts,'oldPosts'=>$oldPosts,'allCategories'=>$allCategories,'carouselData'=>$carouselData]);
     }
 
     public function showPlus() {
